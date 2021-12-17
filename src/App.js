@@ -2,8 +2,6 @@ import React from 'react';
 import Task from "./components/Task";
 import TaskInput from "./components/TaskInput"
 
-
-
 class App extends React.Component {
   constructor() {
     super();
@@ -31,7 +29,7 @@ class App extends React.Component {
   };
 
   doneTask = id => {
-    const index = this.state.tasks.map(task => task.id).indexOf(id); // ищщим индекс положения в массиве
+    const index = this.state.tasks.map(task => task.id).indexOf(id); // ищем индекс положения в массиве
     this.setState(state => { // функция обновляет состояние элемента в массиве
       let { tasks } = state;
       tasks[index].done = true;
@@ -40,8 +38,8 @@ class App extends React.Component {
   };
 
   deleteTask = id => {
-    const index = this.state.tasks.map(task => task.id).indexOf(id); // ищщим индекс положения в массиве
-    this.setState(state => { // функция обновляет состояние элемента в массиве
+    const index = this.state.tasks.map(task => task.id).indexOf(id); 
+    this.setState(state => { 
       let { tasks } = state; // определяем переменную tasks
       delete tasks[index];
       return tasks;
@@ -49,21 +47,21 @@ class App extends React.Component {
   };
 
   render() {
-    const { tasks } = this.state;
-    const activeTasks = tasks.filter(task => task.done); // отфильтрованный массив где done - true
-    const doneTasks =  tasks.filter(task => !task.done); // отфильтрованный массив где противоположное true 
+    const { tasks } = this.state; // Деструктурируем
+    const doneTasks = tasks.filter(task => task.done); // отфильтрованный массив где done - true
+    const activeTasks =  tasks.filter(task => !task.done); // false 
 
     return(
      
       <div className="App">
         <h1 className='top'>Active tasks: {doneTasks.length}</h1> 
-        {[...doneTasks, ...activeTasks].map(task => (
+        {[...activeTasks, ...doneTasks].map(task => (
 
           <Task
             task={task}
             doneTask={() => this.doneTask(task.id)}
             deleteTask={() => this.deleteTask(task.id)}
-            key={TextTrackList.id} ></Task>
+            key={TextTrackList.id} />
         ))}
         <TaskInput
           addTask={this.addTask}
@@ -73,7 +71,5 @@ class App extends React.Component {
     );
   }
 }
-
-
 
 export default App;

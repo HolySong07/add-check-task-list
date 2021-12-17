@@ -19,7 +19,7 @@ class TaskInput extends React.Component {
     };
 
     handleEnter = event => {
-        if(event.key === "enter") {
+        if(event.key === "enter") { // по ентеру
             this.addTask();
         }
     }
