@@ -19,8 +19,7 @@ const Task = ({task, ...props}) =>  {
             <span className='title'>{task.title}</span>
             <ActionBtn />
         </p>
-        )
-    
+    )
 }
 
 export default Task;
